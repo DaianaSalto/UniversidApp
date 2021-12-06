@@ -32,11 +32,11 @@ class LoginActivity : AppCompatActivity() {
 
         btnLogin.setOnClickListener {
             //Se crean variables con los datos ingresados
-            val dato_usuario = dato_usuario.text.toString()
-            val dato_password = dato_password.text.toString()
+            val dato_usuarioC = dato_usuario.text.toString()
+            val dato_passwordC = dato_password.text.toString()
 
             //Llamo a la funcion para validar datos contra la lista de personas de la universidad
-            val checkedData = validar.checkUserLogin(Triple(dato_usuario, dato_password, this))
+            val checkedData = validar.checkUserLogin(Triple(dato_usuarioC, dato_passwordC, this))
 
             //Si la data vuelve OK, se envia el data class usuario a la siguiente activity
             if (checkedData.first)
@@ -45,6 +45,9 @@ class LoginActivity : AppCompatActivity() {
                 intent.putExtra("Usuario", checkedData.second)
 
                 startActivity(intent)
+
+                dato_usuario.text.clear()
+                dato_password.text.clear()
             }
 
         }
@@ -53,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
         linkRegistro.setOnClickListener {
                 val intent = Intent(this, RegistroActivity:: class.java)
                 startActivity(intent)
+                dato_usuario.text.clear()
+                dato_password.text.clear()
             }
 
         }

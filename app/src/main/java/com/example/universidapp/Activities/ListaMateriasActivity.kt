@@ -26,12 +26,16 @@ class ListaMateriasActivity : AppCompatActivity() {
         val lblUsu = findViewById<TextView>(R.id.tvUser)
 
         //Seteo textos por para las variables
-        lblUsu.text = "Alumno: " + usuario!!.username
+        if (usuario != null) {
+            lblUsu.text = "Alumno: " + usuario.username
 
-        // Si es profesor, cambio el texto de la label
-        if (usuario.esProfesor){
-            lblUsu.text = "Profesor: " + usuario!!.username
+            // Si es profesor, cambio el texto de la label
+            if (usuario.esProfesor){
+                lblUsu.text = "Profesor: " + usuario.username
+            }
         }
+
+
 
         //Llamo desde el companion object la funcion para obtener los datos de la universidad y guardo la lista de materias en una variable
         val listaMaterias = CompanionObject_Funciones.obtenerUniversidad().Materias

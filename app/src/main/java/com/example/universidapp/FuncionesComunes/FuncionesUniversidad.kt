@@ -29,6 +29,7 @@ class CompanionObject_Funciones {
             alumno2.apellido = "Gomez"
             alumno2.esProfesor = false
 
+            /*
             val alumno3 = Alumno("lamel", "luciana123")
             alumno3.dni = "44311234"
             alumno3.nombre = "Luciana"
@@ -76,10 +77,11 @@ class CompanionObject_Funciones {
             alumno10.nombre = "Alejo"
             alumno10.apellido = "Avila"
             alumno10.esProfesor = false
-
+            */
 
             universidad.Alumnos = universidad.Alumnos.plus(alumno1)
             universidad.Alumnos = universidad.Alumnos.plus(alumno2)
+            /*
             universidad.Alumnos = universidad.Alumnos.plus(alumno3)
             universidad.Alumnos = universidad.Alumnos.plus(alumno4)
             universidad.Alumnos = universidad.Alumnos.plus(alumno5)
@@ -88,6 +90,7 @@ class CompanionObject_Funciones {
             universidad.Alumnos = universidad.Alumnos.plus(alumno8)
             universidad.Alumnos = universidad.Alumnos.plus(alumno9)
             universidad.Alumnos = universidad.Alumnos.plus(alumno10)
+            */
 
             // Profesores
 
@@ -103,11 +106,13 @@ class CompanionObject_Funciones {
             profesor2.apellido = "Gomez"
             profesor2.esProfesor = true
 
+            /*
             val profesor3 = Profesor("lvalente", "lu111")
             profesor3.dni = "24311265"
             profesor3.nombre = "Lucia"
             profesor3.apellido = "Valente"
             profesor3.esProfesor = true
+
 
             val profesor4 = Profesor("lcarrasco", "lucio111")
             profesor4.dni = "24318634"
@@ -126,15 +131,17 @@ class CompanionObject_Funciones {
             profesor6.nombre = "Amelia"
             profesor6.apellido = "Rodriguez"
             profesor6.esProfesor = true
-
+            */
 
             universidad.Profesores = universidad.Profesores.plus(profesor1)
             universidad.Profesores = universidad.Profesores.plus(profesor2)
+
+            /*
             universidad.Profesores = universidad.Profesores.plus(profesor3)
             universidad.Profesores = universidad.Profesores.plus(profesor4)
             universidad.Profesores = universidad.Profesores.plus(profesor5)
             universidad.Profesores = universidad.Profesores.plus(profesor6)
-
+            */
 
             // Llama a metodo para consumir API Materias
             val listaMateriasAPI = FuncionesAPI.obtenerDatosAPI()

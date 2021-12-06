@@ -26,18 +26,19 @@ class DetalleMateriaActivity : AppCompatActivity() {
         val lblNombreMateria = findViewById<TextView>(R.id.tvNombreMateria)
         val lblDatoMateria= findViewById<TextView>(R.id.tvDatoMateria)
         val lblTipoUser= findViewById<TextView>(R.id.tvTipoUser)
-        val lblNombre= findViewById<TextView>(R.id.tvNombre)
         val btnAgregarMateria= findViewById<Button>(R.id.btnAgregarMateria)
 
         //Seteo textos por para las variables
-        lblTipoUser.text = "Alumno: "
-        lblNombre.text = usuario!!.username
+        if (usuario != null) {
+            lblTipoUser.text = "Alumno: " + usuario.username
 
-        // Si es profesor, cambio el texto de la label y del boton
-        if (usuario.esProfesor){
-            lblTipoUser.text = "Profesor: "
-            btnAgregarMateria.text = "TOMAR MATERIA"
+            // Si es profesor, cambio el texto de la label y del boton
+            if (usuario.esProfesor){
+                lblTipoUser.text = "Profesor: " + usuario.username
+                btnAgregarMateria.text = "TOMAR MATERIA"
+            }
         }
+
 
 
         //Recorro la lista de materias y seteo los textos de las labels con los datos del item
@@ -51,7 +52,11 @@ class DetalleMateriaActivity : AppCompatActivity() {
         // Valido si ya tiene la materia
         fun validarMateria(): Pair<String, Boolean> {
             val validar = Validaciones()
-            return validar.checkMaterias(materia, usuario.esProfesor, usuario.dni)
+            var x = Pair("", false)
+            if (usuario != null) {
+                 x = validar.checkMaterias(materia, usuario.esProfesor, usuario.dni)
+            }
+            return x
         }
 
 
@@ -59,7 +64,7 @@ class DetalleMateriaActivity : AppCompatActivity() {
             val validado = validarMateria()
 
             // Al hacer click en el boton, si las validaciones estan OK, se llama a la funcion tomar materia
-            if (validado.second){
+            if (validado.second && usuario != null){
                 val inscripcion = CompanionObject_Funciones.tomarMateria(usuario.dni, usuario.esProfesor, materia, validado.first)
                 CompanionObject_Funciones.Mensaje(inscripcion, this)
             }

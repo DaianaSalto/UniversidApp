@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UniversidApp">
-        <activity android:name=".Activities.DetalleMateriaActivity"></activity>
+        <activity android:name=".Activities.PerfilActivity"></activity>
+        <activity android:name=".Activities.DetalleMateriaActivity" />
         <activity android:name=".Activities.ListaMateriasActivity" />
         <activity android:name=".Activities.PrincipalActivity" />
         <activity android:name=".Activities.RegistroActivity" />

@@ -1,10 +1,10 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.UniversidApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="Theme.UniversidApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/naranja</item>
         <item name="colorPrimaryVariant">@color/naranja</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/amarillo</item>
         <item name="colorSecondaryVariant">@color/amarillo</item>

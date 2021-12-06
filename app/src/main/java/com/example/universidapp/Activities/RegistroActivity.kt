@@ -55,6 +55,13 @@ class RegistroActivity : AppCompatActivity() {
                 val intent = Intent(this, LoginActivity:: class.java)
                 intent.putExtra("Usuario", nuevoUsuario)
                 startActivity(intent)
+
+                txtUsuario.text.clear()
+                txtPassword.text.clear()
+                txtNombre.text.clear()
+                txtApellido.text.clear()
+                txtDni.text.clear()
+
                 finish()
             }
 

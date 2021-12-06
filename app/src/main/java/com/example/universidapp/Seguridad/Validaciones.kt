@@ -3,6 +3,7 @@ package com.example.universidapp.Seguridad
 import android.content.Context
 import com.example.universidapp.FuncionesComunes.CompanionObject_Funciones
 import com.example.universidapp.DataClass.Usuario
+import com.example.universidapp.Entidades.Materia
 
 open class Validaciones {
 
@@ -107,7 +108,7 @@ open class Validaciones {
         }
 
         // Si todas las validaciones anteriores estan ok:
-        if (!registrado && !validData) {
+        if (!registrado && !validData && !datoVacio) {
             validData = true
 
             //Doy de alta el usuario en la universidad
@@ -139,13 +140,15 @@ open class Validaciones {
                                 continuarRegistro = true
                                 resultado = "Registro de materia existoso"
                             } else {
-                                for (mat in profe.MateriasProfesor) {
-                                    if (mat.idMateria == materiaId) {
-                                        resultado = "Materia ya registrada"
-                                    } else {
-                                        continuarRegistro = true
-                                        resultado = "Registro de materia existoso"
-                                    }
+                                    for (mat in profe.MateriasProfesor) {
+                                        if (mat.idMateria != materiaId) {
+                                            continuarRegistro = true
+                                            resultado = "Registro de materia existoso"
+                                        } else {
+                                            resultado = "Materia previamente registrada"
+                                            continuarRegistro = false
+                                            break
+                                        }
                                 }
                             }
                         }
@@ -159,11 +162,13 @@ open class Validaciones {
                             }
                             else {
                                 for (mat in alumno.MateriasAlumno) {
-                                    if (mat.idMateria == materiaId) {
-                                        resultado = "Ya estás inscripto en esta materia"
-                                    } else {
+                                    if (mat.idMateria != materiaId) {
                                         continuarRegistro = true
                                         resultado = "Inscripción a materia exitosa"
+                                    } else {
+                                        resultado = "Ya estás inscripto en esta materia"
+                                        continuarRegistro = false
+                                        break
                                     }
                                 }
                             }
@@ -175,5 +180,35 @@ open class Validaciones {
         //Devuelvo el mensaje y el boolean para saber si esta ok o no
         return Pair(resultado, continuarRegistro)
     }
+
+    open fun obtenerDatosUsuario(usuario: Usuario?): Triple<String, String, List<Materia>> {
+
+        var materias : List<Materia> = universidad.Materias
+        var datos : Triple<String, String, List<Materia>> = Triple("", "", materias)
+
+        //Checkeo
+        if (usuario != null) {
+            if (usuario.esProfesor) {
+                for (profe in CompanionObject_Funciones.uni.Profesores) {
+                    if (profe.dni == usuario.dni) {
+                        materias = profe.MateriasProfesor
+                        datos = Triple(profe.nombre, profe.apellido, materias)
+                    }
+                }
+            }
+            else {
+                for (alumno in CompanionObject_Funciones.uni.Alumnos) {
+                    if (alumno.dni == usuario.dni) {
+                        materias = alumno.MateriasAlumno
+                        datos = Triple(alumno.nombre, alumno.apellido, materias)
+                    }
+                }
+
+            }
+        }
+
+        return datos
+    }
+
 
 }
